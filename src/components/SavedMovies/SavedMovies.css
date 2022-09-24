@@ -1,0 +1,62 @@
+.movies {
+  margin: auto;
+  max-width: 1140px;
+  width: 100%;
+  padding: 0;
+  border-top: 1px #F9F9F9 solid;
+  padding-top: 70px;
+}
+
+.adding {
+  max-width: 1140px;
+  width: 100%;
+}
+
+.adding__button {
+  margin: 19px 0 80px;
+  width: 100%;
+  border: none;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  height: 36px;
+  cursor: pointer;
+  transition: ease-in-out .5s;
+}
+
+.adding__button:hover {
+  border: 1px solid black;
+  transition: ease-in-out .5s;
+}
+
+.adding__button:focus {
+  outline: none;
+  border: 1px solid black;
+  transition: ease-in-out .5s;
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    max-width: 708px;
+    margin: auto;
+    padding-top: 71px;
+  }
+  .adding__button {
+    margin: 30px 0 115px;
+  }  
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .movies {
+    max-width: 300px;
+    padding-top: 40px;
+  }
+
+  .adding__button {
+    margin: 50px 0 142px;
+  }  
+}

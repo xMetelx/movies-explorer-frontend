@@ -1,0 +1,132 @@
+.header-main {
+  max-width: 1280px;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.header-main__logo {
+  padding: 18px 16px 18px 70px;
+  width: 38px;
+  height: 38px;
+  margin-right: 29px;
+}
+
+.header-main__logo-link:hover {
+  opacity: .5;
+}
+
+.header-main__logo-link:focus {
+  outline: none;
+  opacity: .5;
+}
+
+.header-main__link {
+  text-decoration: none;
+  color: #000;
+  margin-right: 16px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: left;
+}
+
+.header-main__link:hover {
+  text-decoration: underline;
+}
+
+.header-main__link:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.header-main__button {
+  text-decoration: none;
+  width: 100px;
+  height: 32px;
+  background-color: #F9F9F9;
+  color: #000;
+  margin-left: auto;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  transition: ease-in-out .5s;
+  cursor: pointer;
+  margin-right: 70px;
+}
+
+.header-main__button:hover {
+  background-color: #5C5C5C;
+  color: #fff;
+  transition: ease-in-out .5s;
+}
+
+.header-main__button:focus {
+  outline: none;
+  background-color: #5C5C5C;
+  color: #fff;
+  transition: ease-in-out .5s;
+}
+
+.header__burger-menu {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .header-main {
+    max-width: 768px;
+    justify-content: space-between;
+  }
+
+  .header__burger-menu {
+    background-image: url('../../images/icon__COLOR_icon-main_burger-menu.svg');
+    background-repeat: no-repeat;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    padding-top: 1px;
+    display: block;
+    margin-left: auto;
+    margin-right: 30px;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    background-size: cover;
+    margin-top: 15px;
+  }
+
+  .header-main__link {
+    display: none;
+  }
+  .header-main__button {
+    display: none;
+  }
+
+  .header-main__logo {
+    padding: 0;
+    margin: 18px 0 0 30px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .header-main__logo {
+    margin: 18px 0 0 14px;
+  }
+
+  .header__burger-menu {
+    width: 40px;
+    height: 40px;
+    margin-top: 15px;
+    margin-right: 14px;
+  }
+}
