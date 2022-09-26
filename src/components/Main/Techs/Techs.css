@@ -54,7 +54,7 @@
   margin-right: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1190px) {
   .technique__header {
     padding: 89px 0 22px;
   }

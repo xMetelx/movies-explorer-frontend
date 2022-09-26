@@ -29,8 +29,8 @@ const Main = () => {
         <Techs />
         <AboutMe />
         <Portfolio />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

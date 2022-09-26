@@ -65,12 +65,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 768px) {
-  .footer {
-    max-width: 768px;
-    width: 100%;
-  }
-
+@media screen and (min-width: 768px) and (max-width: 1190px) {
   .footer__about {
     max-width: 708px;
     padding: 45px 0 19px;

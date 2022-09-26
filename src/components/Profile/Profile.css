@@ -75,7 +75,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1190px) {
   .profile__title {
     margin-top: 231px;
     margin-bottom: 80px;

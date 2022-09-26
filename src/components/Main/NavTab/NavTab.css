@@ -56,13 +56,10 @@
     line-height: 16px;
   }
   .navigation__items{
-    justify-content: space-between;
     margin: 0 53px;
-
   }
 
   .navigation__item {
     list-style-type: none;
-    margin-left: 0;
   }
 }

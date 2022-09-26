@@ -1,5 +1,5 @@
 .movies {
-  margin: auto;
+  margin: 0;
   max-width: 1140px;
   width: 100%;
   padding: 0;
@@ -39,13 +39,25 @@
   transition: ease-in-out .5s;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1190px) {
   .movies {
     max-width: 708px;
+    width: 100%;
     margin: auto;
     padding-top: 71px;
   }
+
+  .adding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
   .adding__button {
+    max-width: 708px;
+    width: 100%;
+    padding: 0;
     margin: 30px 0 115px;
   }  
 }
@@ -57,6 +69,7 @@
   }
 
   .adding__button {
+    max-width: 300px;
     margin: 50px 0 142px;
   }  
 }

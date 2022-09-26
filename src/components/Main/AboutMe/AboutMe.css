@@ -62,7 +62,9 @@
 }
 
 .student__photo {
-  margin: auto;
+  margin: 0;
+  margin-top: 66px;
+  margin-left: auto;
   width: 270px;
   height: 327px;
   object-fit: contain;
@@ -70,7 +72,7 @@
   margin-top: 66px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1190px) {
   .student__description {
     max-width: 668px;
   }
@@ -98,6 +100,7 @@
   .student__photo {
     width: 255px;
     height: 307px;
+    margin-left: 52px;
   }
 
   .student__portfolio {

@@ -7,8 +7,8 @@ const SearchForm = () => {
     <section className="search">
       <form name="search-form" className="search-form">
         <div className="search-form__logo"></div>
-        <input readOnly noValidate id="search-input" type="text" name="search-input" value="" placeholder="Фильм" className="search-form__input" />
-        <button type="button" className="search-form__button"></button>
+        <input required id="search-input" type="text" placeholder="Фильм" className="search-form__input" name="searchInput" />
+         <button type="button" className="search-form__button"></button>
         <div className="search-form__decoration-line"></div>
       </form>
 
