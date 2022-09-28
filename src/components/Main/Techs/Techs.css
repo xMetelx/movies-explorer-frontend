@@ -98,7 +98,7 @@
   .technique__list {
     flex-wrap: wrap;
     justify-content: flex-start;
-    max-width: 188px;
+    max-width: 200px;
     margin: auto;
     margin-top: 50px;
   }
@@ -106,7 +106,6 @@
   .technique__item {
     margin-bottom: 10px;
   }
-
 }
 
 

@@ -9,13 +9,15 @@ const SavedMovies = () => {
   return (
     <>
       <Header />
-      <SearchForm />
-      <section className="movies">
-        <MoviesCardList />
-      </section>
-      <section className="adding">
-        <button className="adding__button">Ещё</button>
-      </section>
+      <main className="content">
+        <SearchForm />
+        <section className="movies">
+          <MoviesCardList />
+        </section>
+        <section className="adding">
+          <button className="adding__button">Ещё</button>
+        </section>
+      </main>
       <Footer />
     </>
   )

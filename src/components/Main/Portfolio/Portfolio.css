@@ -21,8 +21,15 @@
 
 .student__portpolio-link {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  text-decoration: none;
+  transition: .5s ease-in-out;
+}
+
+.student__portpolio-link:hover {
+  opacity: .5;
+  text-decoration: underline;
+  transition: .5s ease-in-out;
 }
 
 .student__portfolio-item:last-child {
@@ -31,9 +38,6 @@
 }
 
 .student__portfolio-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   border-bottom: solid 1px #E8E8E8;
 }
 
@@ -51,6 +55,7 @@
 }
 
 .student__portfolio-arrow {
+  margin-left: auto;
   width: 20px;
   margin-right: 5px;
   margin-top: 4px;

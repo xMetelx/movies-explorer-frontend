@@ -25,10 +25,10 @@ const Login = () => {
   return (
     <>
       <header className="header-sign">
-      <Link to="/" className="header-sign__link">
-        <img src={Logo} alt="Лого" className="header-sign__logo" />
-      </Link>
-    </header>
+        <Link to="/" className="header-sign__link">
+          <img src={Logo} alt="Лого" className="header-sign__logo" />
+        </Link>
+      </header>
 
     <main className="content">
       <section className="login">

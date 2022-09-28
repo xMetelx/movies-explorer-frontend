@@ -8,7 +8,7 @@ const SearchForm = () => {
       <form name="search-form" className="search-form">
         <div className="search-form__logo"></div>
         <input required id="search-input" type="text" placeholder="Фильм" className="search-form__input" name="searchInput" />
-         <button type="button" className="search-form__button"></button>
+         <button type="submit" className="search-form__button"></button>
         <div className="search-form__decoration-line"></div>
       </form>
 
