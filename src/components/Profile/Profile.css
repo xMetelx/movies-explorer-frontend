@@ -1,0 +1,101 @@
+.profile {
+  max-width: 410px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.profile__title {
+  margin: 52px auto 107px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.profile__data {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 14px;
+}
+
+.profile__data:first-child {
+  border-bottom: #E8E8E8 solid 1px;
+}
+
+.profile__name {
+  margin: 0;
+  padding: 16px 0;
+
+}
+.profile__meaning {
+  border: none;
+  text-align: right;
+  margin: 0;
+  padding: 16px 0;
+}
+
+.profile__button-edit {
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  color: #000;
+  text-decoration: none;
+  margin: 205px 0 13px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  text-align: center;
+}
+
+.profile__button-edit:hover {
+  text-decoration: underline;
+}
+
+.profile__link-cancel {
+  background-color: #fff;
+  border: none;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #EE3465;
+}
+
+.profile__link-cancel:hover {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1190px) {
+  .profile__title {
+    margin-top: 231px;
+    margin-bottom: 80px;
+  }
+
+  .profile__button-edit {
+    margin-top: 195px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .profile__title {
+    margin: 85px auto 64px;
+  }
+  
+  .profile {
+    max-width: 260px;
+  }
+
+  .profile__button-edit {
+    margin-top: 362px;
+  }
+}

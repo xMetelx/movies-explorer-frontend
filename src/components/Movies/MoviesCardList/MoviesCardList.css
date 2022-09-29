@@ -1,0 +1,14 @@
+.movies__list {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin: auto;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .movies__list {
+    max-width: 300px;
+  }
+}

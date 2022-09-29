@@ -1,2 +1,1 @@
-# movies-explorer-frontend
-Frontend for Diploma`s project of Yandex.Practicum course
+Ссылка на макет: https://disk.yandex.ru/d/HMizp8EtcuethA
