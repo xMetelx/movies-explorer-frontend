@@ -1,0 +1,55 @@
+.movies {
+  margin: 0;
+  max-width: 1140px;
+  width: 100%;
+  padding: 0;
+  border-top: 1px #F9F9F9 solid;
+  padding-top: 70px;
+}
+
+.movie__status-notfound {
+  color: #EE3465;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.movie__status-notfound_hide {
+  display: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1190px) {
+  .movies {
+    max-width: 708px;
+    width: 100%;
+    margin: auto;
+    padding-top: 71px;
+  }
+
+  .adding {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .adding__button {
+    max-width: 708px;
+    width: 100%;
+    padding: 0;
+    margin: 30px 0 115px;
+  }  
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .movies {
+    max-width: 300px;
+    padding-top: 40px;
+  }
+
+  .adding__button {
+    max-width: 300px;
+    margin: 50px 0 142px;
+  }  
+}
