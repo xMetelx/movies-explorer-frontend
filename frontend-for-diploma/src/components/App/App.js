@@ -35,27 +35,30 @@ function App() {
     setIsPreloader(true);
     return auth
       .signUp({name, email, password})
-      .then((data) => {
-        localStorage.setItem('token', data.token);
-        setLoggedIn(true);
-        navigate("/movies");
-        mainApi.getUserInfo(data.token)
-          .then((user) => {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            setCurrentUser(user);
-            getAllMovies();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsRegisterError(true);
-      })
-      .finally(() => {
-        setIsPreloader(false);
-      })
+      .then(() => {
+        return auth.signIn({email, password})
+        .then((data) => {
+          localStorage.setItem('token', data.token);
+          setLoggedIn(true);
+          navigate("/movies");
+          mainApi.getUserInfo(data.token)
+            .then((user) => {
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              setCurrentUser(user);
+              getAllMovies();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsRegisterError(true);
+        })
+        .finally(() => {
+          setIsPreloader(false);
+        })
+      })  
   }
 
   const onLogin = ({ email, password }) => {

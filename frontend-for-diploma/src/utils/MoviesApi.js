@@ -11,11 +11,11 @@ class MoviesApi {
   }
 
   getMovies () {
-    console.log("Abkmvs");
+    console.log("Получить фильмы со стороннего апи");
     return fetch(this._baseUrl, {
       method: 'GET',
       headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
+        // authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
       }
     })
