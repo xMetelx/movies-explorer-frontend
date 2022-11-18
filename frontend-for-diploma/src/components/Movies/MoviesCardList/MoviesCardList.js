@@ -10,12 +10,10 @@ const MoviesCardList = ({movies, movieSaved, saveMovie, deleteMovie}) => {
   }
 
   const showList = () => {
-    if (window.innerWidth <= 1280 && window.innerWidth > 786) {
-      return setShowedMovies(7)
-    } else if (window.innerWidth > 481 && window.innerWidth <= 768) {
-      return setShowedMovies(7)
-    } else if (window.innerWidth > 320 && window.innerWidth <= 480) {
+    if (window.innerWidth < 480) {
       return setShowedMovies(5)
+    } else {
+      return setShowedMovies(7)
     }
   }
 
@@ -24,13 +22,11 @@ const MoviesCardList = ({movies, movieSaved, saveMovie, deleteMovie}) => {
   }, [])
 
   const getMoreBtn = () => {
-    if (window.innerWidth <= 1280) {
-      return setShowedMovies(showedMovies + 7)
-    } else if (window.innerWidth >= 481 && window.innerWidth <= 768) {
-      return setShowedMovies(showedMovies + 7)
-    } else if (window.innerWidth > 320) {
+    if (window.innerWidth < 480) {
       return setShowedMovies(showedMovies + 5)
-    }
+    } else {
+      return setShowedMovies(showedMovies + 7)
+    } 
   }
 
   const addingBtnShowed = () => {
