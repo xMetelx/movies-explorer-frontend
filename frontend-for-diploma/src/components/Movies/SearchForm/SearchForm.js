@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './SearchForm.css';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import MoviesApi from "../../../utils/MoviesApi";
+import { SHORT_MOVIE_DURATION } from "../../../utils/constants";
 
 const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFound}) => {
   const [isError, setIsError] = useState(false);
@@ -17,7 +18,7 @@ const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFou
   const filterMovies = (keyword, data, isShort) => {
     let filtered = data.filter((movie) => movie.nameRU.toLowerCase().includes(keyword.toLowerCase()))
       if(isShort) {
-        filtered = filtered.filter((movie) => movie.duration < 40);
+        filtered = filtered.filter((movie) => movie.duration < SHORT_MOVIE_DURATION);
       } 
       if (!filtered.length) {
         setIsFound(false);
@@ -36,7 +37,10 @@ const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFou
           MoviesApi.getMovies()
           .then((data) => {
             localStorage.setItem('movies', JSON.stringify(data.filter(movie => movie.image)));
+            localStorage.setItem('isShort', JSON.stringify(isShort));
+            localStorage.setItem('keyword', JSON.stringify('keyword'));
             setMovies(filterMovies(keyword, data, isShort));
+            localStorage.setItem('isMovies', JSON.stringify(data));
             setIsSearched(true);
           })
           .catch((err) => {
@@ -55,7 +59,7 @@ const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFou
 
   return (
     <section className="search">
-      <form onSubmit={onSubmit} name="search-form" className="search-form">
+      <form noValidate onSubmit={onSubmit} name="search-form" className="search-form">
         <div className="search-form__logo"></div>
         <div className="search-form__input-decoration">
           <label className="search-form__label">

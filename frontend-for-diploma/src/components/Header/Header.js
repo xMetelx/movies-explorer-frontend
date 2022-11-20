@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import './Header.css'
 import PopupMenu from '../PopupMenu/PopupMenu';
 import headerLogo from '../../images/logo.svg';
@@ -25,8 +25,8 @@ const Header = ({loggedIn}) => {
             <img src={headerLogo} alt="Лого" className="header-main__logo" />
           </Link>
           <button className={location.pathname === "/" ? "header__burger-menu_loggedin" : "header__burger-menu"} onClick={() => setMenuActive(true)}></button>
-          <Link to="/movies" className={location.pathname === "/" ? "header__link_loggedin" : "header-main__link"}>Фильмы</Link>
-          <Link to="/saved-movies" className={location.pathname === "/" ? "header__link_loggedin" : "header-main__link"}>Сохранённые фильмы</Link>
+          <NavLink to="/movies" className={location.pathname === "/" ? "header__link_loggedin" : "header-main__link"}>Фильмы</NavLink>
+          <NavLink to="/saved-movies" className={location.pathname === "/" ? "header__link_loggedin" : "header-main__link"}>Сохранённые фильмы</NavLink>
           <Link to="/profile" className={location.pathname === "/" ? "header-main__button_loggedin" : "header-main__button"}>Аккаунт</Link>
           <PopupMenu active={isMenuActive} setActive={setMenuActive} />
         </header>

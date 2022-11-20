@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './SearchForm.css';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
+import { SHORT_MOVIE_DURATION } from "../../../utils/constants";
 
 
 const SearchForm = ({isInputFilled, keyword, movieSaved, setMovieSaved, setIsPreloader, setIsFound}) => {
@@ -16,7 +17,7 @@ const SearchForm = ({isInputFilled, keyword, movieSaved, setMovieSaved, setIsPre
   const filterMovies = (keyword, data, isShort) => {
     let filtered = data.filter((movie) => movie.nameRU.toLowerCase().includes(keyword.toLowerCase()))
       if(isShort) {
-        filtered = filtered.filter((movie) => movie.duration < 40);
+        filtered = filtered.filter((movie) => movie.duration < SHORT_MOVIE_DURATION);
       } 
       if (!filtered.length) {
         setIsFound(false);
@@ -42,10 +43,10 @@ const SearchForm = ({isInputFilled, keyword, movieSaved, setMovieSaved, setIsPre
   
   return (
     <section className="search">
-      <form onSubmit={onSubmit} name="search-form" className="search-form">
+      <form noValidate onSubmit={onSubmit} name="search-form" className="search-form">
         <div className="search-form__logo"></div>
           <label className="search-form__label">
-            <input required id="search-input" type="text" placeholder="Фильм" className="search-form__input" minLength="2" maxLength="40" onChange={handleChange} />
+            <input required id="search-input" type="text" placeholder="Фильм" className="search-form__input" onChange={handleChange} />
           </label>
           <p className={isError ? "search-form__error" : "search-form__error_hide"}>Нужно ввести ключевое слово</p>
         

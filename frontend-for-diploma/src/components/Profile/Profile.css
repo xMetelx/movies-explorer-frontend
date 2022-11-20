@@ -65,6 +65,22 @@
   text-decoration: underline;
 }
 
+.profile__button-edit_disabled{
+  width: 100%;
+  background-color: #fff;
+  border: none;
+  text-decoration: none;
+  margin: 200px 0 13px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  text-align: center;
+  color: #5C5C5C;
+}
+
 .profile__link-cancel {
   background-color: #fff;
   border: none;

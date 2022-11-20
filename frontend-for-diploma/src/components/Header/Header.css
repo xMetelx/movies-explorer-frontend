@@ -223,6 +223,10 @@
   display: none;
 }
 
+.active {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
   .header-main {
     max-width: 768px;

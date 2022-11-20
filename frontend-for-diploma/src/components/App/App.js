@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import auth from '../../utils/auth'
 import mainApi from '../../utils/MainApi';
@@ -91,6 +91,12 @@ function App() {
 
   const onSignOut = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('isShort');
+    localStorage.removeItem('movieSaved');
+    localStorage.removeItem('movies');
+    localStorage.removeItem('keyword');
+    localStorage.removeItem('isMovies');
     setLoggedIn(false);
     navigate('/');
   }  
@@ -156,7 +162,8 @@ function App() {
 
   function handleMovieSaved(movie) {
     setIsPreloader(true);
-    mainApi.postMovie(movie)
+    if (!movieSaved.find(saved => saved.id === movie.id)) {
+      mainApi.postMovie(movie)
       .then((movie) => {
         console.log(movie);
         const newMovie = {
@@ -174,8 +181,19 @@ function App() {
         setMovieSaved(newSaved);
         localStorage.setItem('movieSaved', JSON.stringify(newSaved));
       })
-      .catch(err => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        if(err === 'Ошибка доступа') {
+          onSignOut();
+        } else {
+          console.log(err)
+        }
+      })
       .finally (() => setIsPreloader(false))
+    } else {
+        return
+    }
+
   }
 
   function handleMovieDelete (data) {
@@ -183,11 +201,9 @@ function App() {
     mainApi.removeMovie(data)
       .then(() => {
         const newMoviesList = movieSaved.filter((movie) => {
-          console.log(data.id);
-          console.log(movie.id);
-            if(data.id === movie.id) {
-              return false;
-            } return true; 
+          if(data.id === movie.id) {
+            return false;
+          } return true; 
     })
         setMovieSaved(newMoviesList);
         localStorage.setItem('movieSaved', JSON.stringify(newMoviesList));
@@ -214,8 +230,10 @@ function App() {
         { isPreloader ? <Preloader /> : null }
         <Routes>
           <Route exact path="/" element={ <Main loggedIn={loggedIn} onMenu={handleMenu} /> } />
-          <Route path="/signup" element={ <Register onRegister={onRegister} isRegisterError={isRegisterError} /> } />
-          <Route path="/signin" element={ <Login onLogin={onLogin} isLoginError={isLoginError} isTokenError={isTokenError} /> } />
+
+          <Route path="/signup" element={ loggedIn ? <Navigate to="/" /> : <Register onRegister={onRegister} isRegisterError={isRegisterError} /> } />
+          <Route path="/signin" element={ loggedIn ? <Navigate to="/" /> : <Login onLogin={onLogin} isLoginError={isLoginError} isTokenError={isTokenError} /> } />
+
           <Route element={ <ProtectedRoute loggedIn={loggedIn} /> } >
             <Route path="movies" element={ <Movies movies={movies} isPreloader={isPreloader} setIsPreloader={setIsPreloader} setMovies={setMovies} saveMovie={handleMovieSaved} movieSaved={movieSaved} deleteMovie={handleMovieDelete} loggedIn={loggedIn} /> } />
             <Route path="saved-movies" element={<SavedMovies onMenu={handleMenu} movieSaved={movieSaved} setIsPreloader={setIsPreloader} deleteMovie={handleMovieDelete} loggedIn={loggedIn} setMovieSaved={setMovieSaved} />} />

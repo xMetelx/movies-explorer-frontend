@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
+import { DESKTOP_MOVIES_AMOUNT, MOBILE_MOVIES_AMOUNT, MOBILE_WIDTH } from "../../../utils/constants";
 
 const MoviesCardList = ({movies, movieSaved, saveMovie, deleteMovie}) => {
   const [showedMovies, setShowedMovies] = useState(0);
 
   function getSavedMoviesList(movie) {
-    return movieSaved.find(saved => saved.id === movie.id )
+    const findList = JSON.parse(localStorage.getItem('movieSaved'));
+    return findList.find(saved => saved.id === movie.id )
   }
 
   const showList = () => {
-    if (window.innerWidth < 480) {
-      return setShowedMovies(5)
+    if (window.innerWidth < MOBILE_WIDTH) {
+      return setShowedMovies(MOBILE_MOVIES_AMOUNT)
     } else {
-      return setShowedMovies(7)
+      return setShowedMovies(DESKTOP_MOVIES_AMOUNT)
     }
   }
 
@@ -22,10 +24,10 @@ const MoviesCardList = ({movies, movieSaved, saveMovie, deleteMovie}) => {
   }, [])
 
   const getMoreBtn = () => {
-    if (window.innerWidth < 480) {
-      return setShowedMovies(showedMovies + 5)
+    if (window.innerWidth < MOBILE_WIDTH) {
+      return setShowedMovies(showedMovies + MOBILE_MOVIES_AMOUNT)
     } else {
-      return setShowedMovies(showedMovies + 7)
+      return setShowedMovies(showedMovies + DESKTOP_MOVIES_AMOUNT)
     } 
   }
 
