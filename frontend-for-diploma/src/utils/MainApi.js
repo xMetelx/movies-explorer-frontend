@@ -88,7 +88,7 @@ class MainApi {
   }
 }
 
-// const mainApi = new MainApi ('https://api.metel.nomorepartiesxyz.ru');
-const mainApi = new MainApi ('http://localhost:3001');
+const mainApi = new MainApi ('https://api.metel.nomorepartiesxyz.ru');
+// const mainApi = new MainApi ('http://localhost:3001');
 
 export default mainApi;
