@@ -52,6 +52,6 @@ class Auth {
   }
 }
 
-const auth = new Auth ('https://api.metel.nomorepartiesxyz.ru');
-// const auth = new Auth ('http://localhost:3001');
+// const auth = new Auth ('https://api.metel.nomorepartiesxyz.ru');
+const auth = new Auth ('http://localhost:3001');
 export default auth;
