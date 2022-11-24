@@ -33,12 +33,13 @@ const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFou
         setIsError(true);
         setIsPreloader(false)
       } else {
+        localStorage.setItem('isShort', JSON.stringify(isShort));
+        localStorage.setItem('keyword', JSON.stringify(keyword));
+
         if (!localStorage.getItem('movies')) {
           MoviesApi.getMovies()
           .then((data) => {
             localStorage.setItem('movies', JSON.stringify(data.filter(movie => movie.image)));
-            localStorage.setItem('isShort', JSON.stringify(isShort));
-            localStorage.setItem('keyword', JSON.stringify(keyword));
             setMovies(filterMovies(keyword, data, isShort));
             localStorage.setItem('isMovies', JSON.stringify(data));
             setIsSearched(true);
