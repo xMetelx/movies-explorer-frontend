@@ -6,7 +6,7 @@ import { SHORT_MOVIE_DURATION } from "../../../utils/constants";
 
 const SearchForm = ({isInputFilled, keyword, movieSaved, setMovieSaved, setIsPreloader, setIsFound}) => {
   const [isError, setIsError] = useState(false);
-  const [isShort, setIsShort] = useState(localStorage.getItem('isShort') ? JSON.parse(localStorage.getItem('isShort')) : []);
+  const [isShort, setIsShort] = useState(false);
   const [isSearched, setIsSearched] = useState(false);
 
   const handleChange = (evt) => {

@@ -8,7 +8,6 @@ const FilterCheckbox = ({isShort, setIsShort, isSearched, setMovieSaved, filterM
       const result = JSON.parse(localStorage.getItem('movies'));
       setMovieSaved(filterMovies(keyword, result, !isShort));
     }
-    localStorage.setItem('isShort', JSON.stringify(!isShort));
     setIsShort(!isShort);
   }
 
