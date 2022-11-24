@@ -6,7 +6,7 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
 const Movies = ({movies, movieSaved, setMovies, setIsPreloader, saveMovie, deleteMovie, loggedIn}) => {
-  const [isInputFilled, setIsInputFilled] = useState('');
+  const [isInputFilled, setIsInputFilled] = useState(localStorage.getItem('keyword') ? JSON.parse(localStorage.getItem('keyword')) : "");
   const [isFound, setIsFound] = useState(true);
 
   const handleKeyword = (value) => {
