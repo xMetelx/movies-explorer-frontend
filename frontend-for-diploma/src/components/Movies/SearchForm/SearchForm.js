@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './SearchForm.css';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import MoviesApi from "../../../utils/MoviesApi";
@@ -58,13 +58,23 @@ const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFou
       }
   }
 
+    useEffect(() => {
+      if(keyword.length > 0) {
+        const result = JSON.parse(localStorage.getItem('movies'));
+        setMovies(filterMovies(keyword, result, isShort));
+        localStorage.setItem('isMovies', JSON.stringify(result));
+        setIsSearched(true);
+      }
+    }, [filterMovies, isShort, keyword, setMovies])
+
+
   return (
     <section className="search">
       <form noValidate onSubmit={onSubmit} name="search-form" className="search-form">
         <div className="search-form__logo"></div>
         <div className="search-form__input-decoration">
           <label className="search-form__label">
-            <input required id="search-input" type="text" placeholder="Фильм" className="search-form__input" onChange={handleChangeInput}
+            <input required id="search-input" type="text" placeholder="Фильм" className="search-form__input" onChange={handleChangeInput} value={keyword}
             />
           </label>
           <p className={isError ? "search-form__error" : "search-form__error_hide"}>Нужно ввести ключевое слово</p>
