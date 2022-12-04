@@ -10,8 +10,11 @@ const Profile = ({onSignOut, editForm, loggedIn, isChanged, isProfileError }) =>
   const [isEditError, setIsEditError] = useState(false);
   const [isCheckChanges, setIsCheckChanges] = useState(!isValid || !checkFilling());
 
+
   function checkFilling () {
-    if (currentUser.name !== values.name || currentUser.email !== values.email) {
+    if (values.name && currentUser.name !== values.name) {
+      return true;
+    } else if (values.email && currentUser.email !== values.email) {
       return true;
     } else {
       return false;
@@ -22,13 +25,14 @@ const Profile = ({onSignOut, editForm, loggedIn, isChanged, isProfileError }) =>
     handleChange(evt);
     setIsCheckChanges(!isValid || !checkFilling());
   }
- 
+
   function onSubmit (evt) {
     evt.preventDefault();
     if (checkFilling()) {
+      console.log(123);
       editForm({
-        name: values.name,
-        email: values.email
+        name: values.name || currentUser.name,
+        email: values.email || currentUser.email,
       });
       localStorage.setItem('currentUser', JSON.stringify(values));
     } else {
