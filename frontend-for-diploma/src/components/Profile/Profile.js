@@ -8,7 +8,7 @@ const Profile = ({onSignOut, editForm, loggedIn, isChanged, isProfileError }) =>
   const { values, errors, isValid, handleChange } = useFormWithValidation();
   const currentUser = useContext(CurrentUserContext);
   const [isEditError, setIsEditError] = useState(false);
-  const [isCheckChanges, setIsCheckChanges] = useState(!isValid || !checkFilling());
+  const [isCheckChanges, setIsCheckChanges] = useState(false);
 
 
   function checkFilling () {
@@ -23,7 +23,7 @@ const Profile = ({onSignOut, editForm, loggedIn, isChanged, isProfileError }) =>
 
   function checkInputChanges (evt) {
     handleChange(evt);
-    setIsCheckChanges(!isValid || !checkFilling());
+    setIsCheckChanges(isValid || checkFilling());
   }
 
   function onSubmit (evt) {
@@ -65,7 +65,7 @@ const Profile = ({onSignOut, editForm, loggedIn, isChanged, isProfileError }) =>
             <p className={isChanged ? "profile__change-success" : "profile__change-success_hide"}>Ваши данные успешно изменены</p>
             <p className={isProfileError ? "profile__change-not-success" : "profile__change-not-success_hide"}>При обновлении профиля произошла ошибка</p>
             <p className={isEditError ? "profile__change-not-success" : "profile__change-not-success_hide"}>Введите обновленные данные</p>
-            <button type="submit" disabled={!isCheckChanges} className={isValid ? "profile__button-edit" : "profile__button-edit_disabled"}>Редактировать</button>
+            <button type="submit" disabled={!isCheckChanges} className={isCheckChanges ? "profile__button-edit" : "profile__button-edit_disabled"}>Редактировать</button>
           </form>
           <button type="submit" className="profile__link-cancel" onClick={onSignOut}>Выйти из аккаунта</button>
         </section>
