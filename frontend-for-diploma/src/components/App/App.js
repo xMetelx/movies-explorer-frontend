@@ -28,7 +28,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isPreloader, setIsPreloader] = useState(false);
-  const [movies, setMovies] = useState(keyword.length > 0 ? filterMovies(keyword, filteredArray, isShort) : []);
+  const [movies, setMovies] = useState(keyword.length > 0 ? filterMovies(keyword, filteredArray, isShort, true) : []);
   const [movieSaved, setMovieSaved] = useState([]);
   const [isChanged, setIsChanged] = useState(false);
   const [isProfileError, setIsProfileError] = useState(false);
@@ -42,7 +42,7 @@ function App() {
       if(isShort) {
         filtered = filtered.filter((movie) => movie.duration < SHORT_MOVIE_DURATION);
       } 
-      if (skipStateUpdate && !filtered.length) {
+      if (!skipStateUpdate && !filtered.length) {
         setIsFound(false);
       }
     return filtered;
