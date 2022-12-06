@@ -18,7 +18,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Preloader/Preloader';
 
 function App() {
-  const keyword = localStorage.getItem('keyword') || '';
+  const keyword = localStorage.getItem('keyword') ? JSON.parse(localStorage.getItem('keyword')) : '';
   const isShort = localStorage.getItem('isShort') ? JSON.parse(localStorage.getItem('isShort')) : false;
   const filteredArray = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : [];
 
@@ -42,8 +42,8 @@ function App() {
       if(isShort) {
         filtered = filtered.filter((movie) => movie.duration < SHORT_MOVIE_DURATION);
       } 
-      if (!skipStateUpdate && !filtered.length) {
-        setIsFound(false);
+      if (!skipStateUpdate) {
+        setIsFound(filtered.length ? true : false);
       }
     return filtered;
   }
