@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './SearchForm.css';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 import MoviesApi from "../../../utils/MoviesApi";
-import { SHORT_MOVIE_DURATION } from "../../../utils/constants";
 
-const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFound}) => {
+const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, filterMovies}) => {
   const [isError, setIsError] = useState(false);
   const [isShort, setIsShort] = useState(localStorage.getItem('isShort') ? JSON.parse(localStorage.getItem('isShort')) : false);
-  const [isSearched, setIsSearched] = useState(false);
+  const [isSearched, setIsSearched] = useState(keyword.length > 0);
   const [isServerError, setIsServerError] = useState(false);
 
   const handleChangeInput = (evt) => {
     isInputFilled(evt.target.value);
     setIsError(false);
-  }
-
-  const filterMovies = (keyword, data, isShort) => {
-    let filtered = data.filter((movie) => movie.nameRU.toLowerCase().includes(keyword.toLowerCase()))
-      if(isShort) {
-        filtered = filtered.filter((movie) => movie.duration < SHORT_MOVIE_DURATION);
-      } 
-      if (!filtered.length) {
-        setIsFound(false);
-      }
-    return filtered;
   }
 
   const onSubmit = (evt) => {
@@ -57,16 +45,6 @@ const SearchForm = ({isInputFilled, keyword, setMovies, setIsPreloader, setIsFou
         }
       }
   }
-
-    useEffect(() => {
-      if(keyword.length > 0) {
-        const result = JSON.parse(localStorage.getItem('movies'));
-        setMovies(filterMovies(keyword, result, isShort));
-        localStorage.setItem('isMovies', JSON.stringify(result));
-        setIsSearched(true);
-      }
-    }, [filterMovies, isShort, keyword, setMovies])
-
 
   return (
     <section className="search">

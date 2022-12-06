@@ -3,7 +3,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
 import { DESKTOP_MOVIES_AMOUNT, MOBILE_MOVIES_AMOUNT, MOBILE_WIDTH } from "../../../utils/constants";
 
-const MoviesCardList = ({movies, movieSaved, saveMovie, deleteMovie}) => {
+const MoviesCardList = ({movies, saveMovie, deleteMovie}) => {
   const [showedMovies, setShowedMovies] = useState(0);
 
   function getSavedMoviesList(movie) {

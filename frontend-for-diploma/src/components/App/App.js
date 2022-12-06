@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-
 import './App.css';
 import auth from '../../utils/auth'
 import mainApi from '../../utils/MainApi';
+import { SHORT_MOVIE_DURATION } from '../../utils/constants';
 
 import Main from '../Main/Main';
 import Login from '../Login/Login';
@@ -17,19 +18,35 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Preloader from '../Preloader/Preloader';
 
 function App() {
+  const keyword = localStorage.getItem('keyword') || '';
+  const isShort = localStorage.getItem('isShort') ? JSON.parse(localStorage.getItem('isShort')) : false;
+  const filteredArray = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : [];
+
   const navigate = useNavigate();
   const location = useLocation();
   const [currentUser, setCurrentUser] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isPreloader, setIsPreloader] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(keyword.length > 0 ? filterMovies(keyword, filteredArray, isShort) : []);
   const [movieSaved, setMovieSaved] = useState([]);
   const [isChanged, setIsChanged] = useState(false);
   const [isProfileError, setIsProfileError] = useState(false);
   const [isRegisterError, setIsRegisterError] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
   const [isTokenError, setTokenError] = useState(false);
+  const [isFound, setIsFound] = useState(true);
+
+  function filterMovies (keyword, filteredArray, isShort, skipStateUpdate) {
+    let filtered = filteredArray.filter((movie) => movie.nameRU.toLowerCase().includes(keyword.toLowerCase()))
+      if(isShort) {
+        filtered = filtered.filter((movie) => movie.duration < SHORT_MOVIE_DURATION);
+      } 
+      if (skipStateUpdate && !filtered.length) {
+        setIsFound(false);
+      }
+    return filtered;
+  }
   
   function onRegister ({name, email, password}) {
     setIsPreloader(true);
@@ -235,7 +252,7 @@ function App() {
           <Route path="/signin" element={ loggedIn ? <Navigate to="/" /> : <Login onLogin={onLogin} isLoginError={isLoginError} isTokenError={isTokenError} /> } />
 
           <Route element={ <ProtectedRoute loggedIn={loggedIn} /> } >
-            <Route path="movies" element={ <Movies movies={movies} isPreloader={isPreloader} setIsPreloader={setIsPreloader} setMovies={setMovies} saveMovie={handleMovieSaved} movieSaved={movieSaved} deleteMovie={handleMovieDelete} loggedIn={loggedIn} /> } />
+            <Route path="movies" element={ <Movies movies={movies} isPreloader={isPreloader} setIsPreloader={setIsPreloader} setMovies={setMovies} saveMovie={handleMovieSaved} movieSaved={movieSaved} deleteMovie={handleMovieDelete} loggedIn={loggedIn} isFound={isFound} setIsFound={setIsFound} filterMovies={filterMovies} /> } />
             <Route path="saved-movies" element={<SavedMovies onMenu={handleMenu} movieSaved={movieSaved} setIsPreloader={setIsPreloader} deleteMovie={handleMovieDelete} loggedIn={loggedIn} setMovieSaved={setMovieSaved} />} />
             <Route path="profile" element={<Profile onMenu={handleMenu} onSignOut={onSignOut} editForm={handleUpdateUser} isChanged={isChanged} loggedIn={loggedIn} isProfileError={isProfileError} />} />
           </Route>
